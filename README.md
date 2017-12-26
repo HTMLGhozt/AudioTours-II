@@ -85,7 +85,14 @@ Putting to `/user:id` requres an update in one or more of the following fields (
 - password
 - creator
 
-Returns a success message
+Returns a success message:
+
+``` javascript
+{
+  "success": true,
+  "message": `Updated user with ${id}.`
+}
+```
 
 ---
 
