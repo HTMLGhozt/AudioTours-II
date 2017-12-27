@@ -10,13 +10,10 @@ const userSchema = new Schema(
       unique: true,
     },
     password: String,
-    purchasedTours: [/* Tour Objects */],
-    createdTours: [/* Tour Objects */],
-    _creator: {
-      type: Boolean,
-      default: false,
-    },
-    // _lastUpdate: Date,
+    purchasedTours: [Schema.Types.ObjectId],
+    createdTours: [Schema.Types.ObjectId],
+    creator: { type: Boolean, default: false },
+    // lastUpdate: Date,
   },
   {
     timestamps: {
@@ -26,9 +23,11 @@ const userSchema = new Schema(
   },
 );
 
-// userSchema.pre('save', (next) => {
-//   this._lastUpdate = Date.now();
-//   next();
-// });
+/*
+ * userSchema.pre('save', (next) => {
+ *   this.lastUpdate = Date.now();
+ *   next();
+ * });
+ */
 
 module.exports = mongoose.model('User', userSchema);
