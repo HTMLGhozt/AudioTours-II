@@ -2,6 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
+const routes = require('./api/routes.js');
+
 const server = express();
 const corsOptions = {
   origin: '*',
@@ -24,6 +26,6 @@ server.use((req, res, next) => {
   next();
 });
 
-server.use(bodyParser);
+routes(server);
 
 module.exports = server;

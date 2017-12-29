@@ -8,6 +8,8 @@ const userSchema = new Schema(
       type: String,
       required: true,
       unique: true,
+      maxlength: 24,
+      minlength: 5,
     },
     password: String,
     purchasedTours: [Schema.Types.ObjectId],
