@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 // const User = require('./userSchema.js');
 
-mongoose.Promise = Promise;
-mongoose.connect('mongodb://localhost:27017', { useMongoClient: true });
+// mongoose.Promise = Promise;
+// mongoose.connect('mongodb://localhost:27017', { useMongoClient: true });
 const { Schema } = mongoose;
 
 const coordinates = {
@@ -11,6 +11,7 @@ const coordinates = {
 };
 
 const urlRegex = /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/;
+
 const pointSchema = new Schema({
   name: { type: String, required: true },
   coordinates,
