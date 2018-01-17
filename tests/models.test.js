@@ -1,17 +1,17 @@
 const mongoose = require('mongoose');
 const { expect } = require('chai');
-const User = require('../api/models/userSchema.js');
-const Tour = require('../api/models/tourSchema.js');
+const User = require('../api/users/userSchema.js');
+// const Tour = require('../api/tour/tourSchema.js');
 
 mongoose.Promise = Promise;
 mongoose.connect('mongodb://localhost:27017', { useMongoClient: true });
 
 const userDb = [
-  ['IvanWOW', 'MyOtherProgramIs_ArnoldC'],
-  ['RyanCat', 'NyanCatVomitsRainbows'],
-  ['LambAusten', 'MIT_TeachersLearnAtLambda'],
-  ['BenThere', 'DoneThat'],
-  ['HomieLuis', 'WhatsNext'],
+  ['IvanWOW', 'MyOtherProgramIs_ArnoldC!23'],
+  ['RyanCat', 'NyanCatVomitsRainbows!23'],
+  ['LambAusten', 'MIT_TeachersLearnAtLambda!23'],
+  ['BenThere', 'DoneThat!23'],
+  ['HomieLuis', 'WhatsNext!23'],
 ];
 
 let testDb;
@@ -52,9 +52,10 @@ describe('Model', () => {
         expect(errorMessage).to.equal('Path `username` is required.');
       });
     });
-    it('should properly set username', () => {
+    it('usernames should be lowercase', () => {
       expect(testDb.every((user, i) =>
-        user.username === userDb[i][0])).to.equal(true);
+        user.username === userDb[i][0].toLowerCase(),
+      )).to.equal(true);
     });
     it('should have timestamps - created_at and updated_at - as dates', () => {
       testDb.forEach((user) => {

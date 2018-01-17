@@ -4,13 +4,22 @@ const createUser = (req, res) => {
   const { username, password, creator } = req.body;
 
   const newUser = new User({ username, password, creator });
+
   newUser
     .save()
-    .then(fUser => res.json(fUser))
+    .then(() => {
+      res
+        .status(201)
+        .json({ username, creator });
+    })
     .catch(err => res.status(500).json(err.message));
 };
 
-const updateUser = () => {};
+const updateUser = (req, res) => {
+  const user = req.body;
+
+  User.findByIdAndUpdate(user.id);
+};
 
 const login = (req, res) => {
   const { username, password } = req.body;
@@ -21,7 +30,17 @@ const login = (req, res) => {
       fUser.checkPassword(password, (err, isMatch) => {
         if (err) res.status(500).json(err);
         else if (!isMatch) res.status(500).json('incorrect username/password');
-        else res.json(fUser);
+        else {
+          const { creator, purchasedTours, createdTours } = fUser;
+
+          res.json({
+            id: fUser._id,
+            username,
+            creator,
+            purchasedTours,
+            createdTours,
+          });
+        }
       });
     })
     .catch(err => res.status(500).json(err.message));
