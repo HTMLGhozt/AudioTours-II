@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-const routes = require('./api/routes.js');
+const apiRouter = require('./api/common/apiRoutes.js');
 
 const server = express();
 const corsOptions = {
@@ -26,6 +26,6 @@ server.use((req, res, next) => {
   next();
 });
 
-routes(server);
+server.use('/api', apiRouter);
 
 module.exports = server;

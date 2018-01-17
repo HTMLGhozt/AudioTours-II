@@ -9,7 +9,22 @@
 ***** End ReadMe Notation *****
 -->
 
-AudioTours Server
+## AudioTours Server
+
+The backend server for the [audiotours frontend](https://github.com/HTMLGhozt/audiotours-frontend.git).
+
+## Dependencies
+
+- bcrypt: ^1.0.3
+- body-parser: ^1.18.2
+- chai: ^4.1.2
+- cors: ^2.8.4
+- express: ^4.16.2
+- mocha: ^4.0.1
+- mongoose: ^4.13.7
+- sinon: ^4.1.
+
+Before attempting to run this applicaiton install the dependencies with `npm i`.
 
 ## User
 
