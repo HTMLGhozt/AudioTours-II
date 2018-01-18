@@ -24,16 +24,18 @@ const updateUser = (req, res) => {
 const login = (req, res) => {
   const { username, password } = req.body;
 
+  console.log(username, password);
   User
     .findOne({ username })
     .then((fUser) => {
       fUser.checkPassword(password, (err, isMatch) => {
-        if (err) res.status(500).json(err);
+        console.log('inside checkPassword');
+        if (err) res.status(500).json(err.message);
         else if (!isMatch) res.status(500).json('incorrect username/password');
         else {
           const { creator, purchasedTours, createdTours } = fUser;
 
-          res.json({
+          res.status(200).json({
             id: fUser._id,
             username,
             creator,
@@ -43,7 +45,7 @@ const login = (req, res) => {
         }
       });
     })
-    .catch(err => res.status(500).json(err.message));
+    .catch(err => res.status(500).json('error logging in: ' + err.message));
 };
 
 module.exports = {
