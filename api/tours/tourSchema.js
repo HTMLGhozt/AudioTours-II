@@ -11,6 +11,7 @@ const coordinates = {
 const urlRegex = /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/;
 
 const pointSchema = new Schema({
+  key: String,
   name: { type: String, required: true },
   coordinates,
   audio: { type: String, match: [urlRegex, 'Please fill a valid url.'] },
@@ -21,7 +22,7 @@ const tourSchema = new Schema(
     name: { type: String, required: true, unique: true },
     description: String,
     creator: Schema.Types.ObjectId,
-    start: [coordinates],
+    // start: [coordinates],
     points: [pointSchema],
     isPublished: { type: Boolean, default: false },
   },
